@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0f5c4f">
+  <meta name="description" content="أذكاري: أذكار الصباح والمساء وما بعد الصلاة">
+  <link rel="manifest" href="manifest.webmanifest">
+  <title>أذكاري</title>
+  <style>
+    :root{--ink:#173a34;--brand:#0f5c4f;--gold:#e8bd66;--paper:#f8f5ec;--soft:#e9f1ec}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Tahoma,"Noto Naskh Arabic",serif;line-height:2}header{padding:38px 20px 32px;text-align:center;color:#fff;background:radial-gradient(circle at 50% -50%,#4d9a83 0,#0f5c4f 55%,#093e35 100%)}h1{margin:0;font-size:2.4rem;letter-spacing:.04em}.subtitle{margin:5px 0 0;color:#d8ede4}.tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:24px}.tab{border:1px solid #80b6a5;background:transparent;color:#fff;border-radius:999px;padding:7px 17px;font:inherit;cursor:pointer}.tab[aria-selected=true]{background:var(--gold);border-color:var(--gold);color:#243e38;font-weight:bold}main{max-width:760px;margin:auto;padding:22px 16px 52px}.intro{background:var(--soft);border-right:4px solid var(--gold);padding:13px 16px;border-radius:10px;margin:0 0 18px}.card{background:#fff;border:1px solid #e4e2da;border-radius:16px;padding:18px;margin:14px 0;box-shadow:0 4px 13px #16372b0a}.card h2{font-size:1.18rem;margin:0 0 7px;color:var(--brand)}.repeat{display:inline-block;background:#f8efd9;color:#72551b;padding:1px 10px;border-radius:99px;font-size:.88rem}.source{font-size:.82rem;color:#6c786f;margin:10px 0 0}.check{float:left;accent-color:var(--brand);width:20px;height:20px;cursor:pointer}.hidden{display:none}.footer{text-align:center;color:#6c786f;font-size:.82rem;padding-top:12px}.reset{background:none;border:0;color:var(--brand);font:inherit;text-decoration:underline;cursor:pointer}@media(max-width:500px){h1{font-size:2rem}.card{padding:15px}}
+  </style>
+</head>
+<body>
+  <header><h1>أذكاري</h1><p class="subtitle">رفيقك اليومي لذكر الله</p><nav class="tabs" aria-label="الأقسام"><button class="tab" aria-selected="true" data-tab="morning">الصباح</button><button class="tab" aria-selected="false" data-tab="evening">المساء</button><button class="tab" aria-selected="false" data-tab="prayer">بعد الصلاة</button></nav></header>
+  <main>
+    <p class="intro" id="intro">يبدأ وقت أذكار الصباح من الفجر، وأذكار المساء من بعد العصر إلى غروب الشمس. علّم الذكر الذي أتممته ليُحفظ على جهازك.</p>
+    <section id="morning" class="panel"></section><section id="evening" class="panel hidden"></section><section id="prayer" class="panel hidden"></section>
+    <p class="footer">النصوص مختارة من الأذكار الثابتة. <button class="reset" type="button">مسح علامات الإتمام</button></p>
+  </main>
+  <script>
+    const ayat='اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَنْ ذَا الَّذِي يَشْفَعُ عِنْدَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ.';
+    const common=[['آية الكرسي',ayat,'مرة واحدة','رواه النسائي وصححه الألباني'],['الإخلاص والمعوذتان','قُلْ هُوَ اللَّهُ أَحَدٌ … وقل أعوذ برب الفلق … وقل أعوذ برب الناس.','ثلاث مرات','رواه أبو داود والترمذي'],['الاستغفار','أستغفر الله وأتوب إليه.','100 مرة في اليوم','رواه مسلم']];
+    const morning=[['دعاء الصباح','اللهم بك أصبحنا وبك أمسينا وبك نحيا وبك نموت وإليك النشور.','مرة واحدة','رواه الترمذي وأبو داود'],['الشكر لله','اللهم ما أصبح بي من نعمة أو بأحد من خلقك فمنك وحدك لا شريك لك، فلك الحمد ولك الشكر.','مرة واحدة','رواه أبو داود والنسائي']];
+    const evening=[['دعاء المساء','اللهم بك أمسينا وبك أصبحنا وبك نحيا وبك نموت وإليك المصير.','مرة واحدة','رواه الترمذي وأبو داود'],['الرضا بالله','رضيت بالله ربًّا، وبالإسلام دينًا، وبمحمد ﷺ نبيًّا.','ثلاث مرات','رواه أبو داود والترمذي']];
+    const prayer=[['الاستغفار بعد السلام','أستغفر الله.','ثلاث مرات','رواه مسلم'],['دعاء بعد الصلاة','اللهم أنت السلام ومنك السلام، تباركت يا ذا الجلال والإكرام.','مرة واحدة','رواه مسلم'],['التسبيح','سبحان الله، والحمد لله، والله أكبر.','33 مرة لكل ذكر','رواه مسلم'],['التهليل','لا إله إلا الله وحده لا شريك له، له الملك وله الحمد وهو على كل شيء قدير.','مرة واحدة بعد إتمام التسبيح','رواه مسلم']];
+    const lists={morning:[...common,...morning],evening:[...common,...evening],prayer};
+    function render(id){document.getElementById(id).innerHTML=lists[id].map((x,i)=>`<article class="card"><input class="check" type="checkbox" aria-label="تم" data-key="${id}-${i}"><h2>${x[0]} <span class="repeat">${x[2]}</span></h2><p>${x[1]}</p><p class="source">${x[3]}</p></article>`).join('');document.querySelectorAll('.check').forEach(c=>{c.checked=localStorage[c.dataset.key]==='1';c.onchange=()=>localStorage[c.dataset.key]=c.checked?'1':''})}Object.keys(lists).forEach(render);
+    document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.setAttribute('aria-selected','false'));b.setAttribute('aria-selected','true');document.querySelectorAll('.panel').forEach(x=>x.classList.add('hidden'));document.getElementById(b.dataset.tab).classList.remove('hidden');document.getElementById('intro').textContent=b.dataset.tab==='prayer'?'أذكار ثابتة تُقال عقب الصلاة المكتوبة بعد السلام.':'يبدأ وقت أذكار الصباح من الفجر، وأذكار المساء من بعد العصر إلى غروب الشمس. علّم الذكر الذي أتممته ليُحفظ على جهازك.'});document.querySelector('.reset').onclick=()=>{localStorage.clear();document.querySelectorAll('.check').forEach(c=>c.checked=false)};
+    if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');
+  </script>
+</body></html>
